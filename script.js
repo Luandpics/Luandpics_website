@@ -92,7 +92,6 @@ function showImageGallery(category) {
 }
 
 function getCategoryImages(category) {
-    // Remplacez les chemins d'accès par ceux de vos images réelles
     if (category === 'Sports') {
         return [
             'Sport/course1.JPG',
