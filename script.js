@@ -39,6 +39,10 @@ function showPage(page) {
         contentDiv.innerHTML = `
             <h2>${image.text}</h2>
             <div id="category-gallery"></div>
+            <div class="modal-buttons">
+                <button class="modal-btn" onclick="showPage('gallery')">Accueil</button>
+                <button class="modal-btn" onclick="showPage('contact')">Me contacter</button>
+            </div>
         `;
         document.querySelector('.gallery').style.display = 'none';
         showImageGallery(image.text);
