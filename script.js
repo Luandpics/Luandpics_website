@@ -157,25 +157,31 @@ function openModal(images, index) {
         <span class="nav-arrow left">&#10094;</span>
         <img class="modal-content" src="${images[index]}" data-index="${index}">
         <span class="nav-arrow right">&#10095;</span>
+
+        <button class="bottom-button modal-btn" onclick="closeModalAndGo('gallery')">Accueil</button>
+        <button class="bottom-button modal-btn contact" onclick="closeModalAndGo('contact')">Me contacter</button>
     `;
+
     document.body.appendChild(modal);
 
-    const img = modal.querySelector('.modal-content');
-
-    // Fermer la modale
     modal.querySelector('.close').onclick = () => modal.remove();
 
-    // Navigation gauche
     modal.querySelector('.nav-arrow.left').onclick = () => {
         const newIndex = (index - 1 + images.length) % images.length;
         modal.remove();
         openModal(images, newIndex);
     };
 
-    // Navigation droite
     modal.querySelector('.nav-arrow.right').onclick = () => {
         const newIndex = (index + 1) % images.length;
         modal.remove();
         openModal(images, newIndex);
     };
 }
+
+// Fonction utilitaire : ferme la modale puis change de page
+function closeModalAndGo(target) {
+    document.querySelector('.modal')?.remove();
+    showPage(target);
+}
+

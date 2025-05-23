@@ -220,22 +220,23 @@ nav ul li a.disabled {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    padding: 8px 14px;
-    font-size: 0.9em;
-    font-weight: bold;
-    color: white;
-    background-color: #444;
-    border: none;
-    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.75em;
+    font-weight: normal;
+    color: #ccc; /* gris clair pour rester discret */
+    background-color: rgba(255, 255, 255, 0.05); /* très léger fond blanc transparent */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* discret */
+    border-radius: 6px;
     cursor: pointer;
     z-index: 1000;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
 }
 
 .bottom-button:hover {
-    background-color: #888;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
 }
-
 
 .nav-arrow {
     position: absolute;
@@ -255,4 +256,31 @@ nav ul li a.disabled {
 
 .nav-arrow.right {
     right: 10px;
+}
+
+.modal-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    margin-left: 8px;
+    padding: 6px 12px;
+    font-size: 0.75em;
+    font-weight: normal;
+    color: #ccc;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 2000;
+    transition: all 0.2s ease;
+}
+
+.modal-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-btn.contact {
+    right: 110px; /* pour ne pas chevaucher le bouton accueil */
 }
