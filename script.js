@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    showPage('gallery'); // Afficher la galerie par défaut
+    showPage('gallery');
 });
 
 function showPage(page) {
