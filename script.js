@@ -151,7 +151,6 @@ function getCategoryImages(category) {
 }
 
 function openModal(images, index) {
-    document.querySelectorAll('.modal-buttons').forEach(el => el.remove());
     const modal = document.createElement('div');
     modal.classList.add('modal');
 
@@ -160,11 +159,6 @@ function openModal(images, index) {
         <span class="nav-arrow left">&#10094;</span>
         <img class="modal-content" src="${images[index]}" data-index="${index}">
         <span class="nav-arrow right">&#10095;</span>
-
-        <div class="modal-buttons">
-            <button class="modal-btn" onclick="closeModalAndGo('gallery')">Accueil</button>
-            <button class="modal-btn" onclick="closeModalAndGo('contact')">Me contacter</button>
-        </div>
     `;
 
     document.body.appendChild(modal);
