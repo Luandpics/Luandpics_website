@@ -258,21 +258,25 @@ nav ul li a.disabled {
     right: 10px;
 }
 
-.modal-btn {
+.modal-buttons {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    margin-left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2000;
+}
+
+.modal-btn {
     padding: 6px 12px;
     font-size: 0.75em;
-    font-weight: normal;
     color: #ccc;
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     cursor: pointer;
-    z-index: 2000;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .modal-btn:hover {
@@ -281,6 +285,3 @@ nav ul li a.disabled {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-.modal-btn.contact {
-    right: 110px; /* pour ne pas chevaucher le bouton accueil */
-}

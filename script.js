@@ -12,7 +12,6 @@ function showPage(page) {
     if (page === 'gallery') {
         contentDiv.innerHTML = `
             <p class="page-title">Intemporel. Inoubliable. Vous.</p>
-            <button onclick="showPage('contact')" class="bottom-button">Me contacter</button>
         `;
         document.getElementById('nav-gallery').classList.add('disabled');
         document.querySelector('.gallery').style.display = 'block';
@@ -158,8 +157,10 @@ function openModal(images, index) {
         <img class="modal-content" src="${images[index]}" data-index="${index}">
         <span class="nav-arrow right">&#10095;</span>
 
-        <button class="bottom-button modal-btn" onclick="closeModalAndGo('gallery')">Accueil</button>
-        <button class="bottom-button modal-btn contact" onclick="closeModalAndGo('contact')">Me contacter</button>
+        <div class="modal-buttons">
+            <button class="modal-btn" onclick="closeModalAndGo('gallery')">Accueil</button>
+            <button class="modal-btn" onclick="closeModalAndGo('contact')">Me contacter</button>
+        </div>
     `;
 
     document.body.appendChild(modal);
@@ -179,9 +180,7 @@ function openModal(images, index) {
     };
 }
 
-// Fonction utilitaire : ferme la modale puis change de page
 function closeModalAndGo(target) {
     document.querySelector('.modal')?.remove();
     showPage(target);
 }
-
