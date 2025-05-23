@@ -17,7 +17,7 @@ function showPage(page) {
         loadImages();
     } else if (page === 'contact') {
         contentDiv.innerHTML = `
-            <p class="page-title">Pour vos projets:</p>
+            <p class="page-title">Pour vos projets :</p>
             <div class="contact-image">
                 <img src="Logo/white_logo.png" alt="Contact Image">
             </div>
