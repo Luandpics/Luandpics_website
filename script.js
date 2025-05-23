@@ -11,7 +11,7 @@ function showPage(page) {
 
     if (page === 'gallery') {
         contentDiv.innerHTML = `
-            <p class="page-title">Mais alors... que voit mon objectif?</p>
+            <p class="page-title">Intemporel. Inoubliable. Vous.</p>
             <button onclick="showPage('contact')" class="bottom-button">Me contacter</button>
         `;
         document.getElementById('nav-gallery').classList.add('disabled');
@@ -19,7 +19,7 @@ function showPage(page) {
         loadImages();
     } else if (page === 'contact') {
         contentDiv.innerHTML = `
-            <p class="page-title">N'hésitez plus... contactez moi!</p>
+            <p class="page-title">Pour vos projets:</p>
             <div class="contact-image">
                 <img src="Logo/white_logo.png" alt="Contact Image">
             </div>
