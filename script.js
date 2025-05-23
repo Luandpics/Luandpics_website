@@ -81,7 +81,7 @@ function loadImages() {
 
 function showImageGallery(category) {
     const categoryGallery = document.getElementById('category-gallery');
-    categoryGallery.innerHTML = ''; // Clear before displaying new thumbnails
+    categoryGallery.innerHTML = '';
     const categoryImages = getCategoryImages(category);
 
     categoryImages.forEach((src, index) => {
