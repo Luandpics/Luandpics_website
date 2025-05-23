@@ -17,7 +17,7 @@ header h1.logo {
 }
 
 header h2.subtitle {
-    font-size: 1em; /* Taille du titre plus grande */
+    font-size: 1em;
     margin: 0;
 }
 
@@ -29,8 +29,8 @@ nav ul {
 nav ul.main-nav {
     display: flex;
     justify-content: center;
-    gap: 30px; /* Espace entre les éléments */
-    margin-top: 30px; /* Espace au-dessus des liens */
+    gap: 30px;
+    margin-top: 30px;
 }
 
 nav ul li {
@@ -41,8 +41,8 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 2em; /* Taille des sous-titres */
-    font-weight: bold; /* Texte en gras */
+    font-size: 2em;
+    font-weight: bold;
 }
 
 nav ul li a:hover:not(.disabled) {
@@ -51,25 +51,25 @@ nav ul li a:hover:not(.disabled) {
 
 nav ul li a.disabled {
     pointer-events: none;
-    color: gray; /* Change la couleur pour indiquer que c'est désactivé */
+    color: gray;
     text-decoration: none;
     cursor: default;
 }
 
 #content {
-    text-align: center; /* Aligne le texte au centre */
-    margin-top: 20px; /* Espace au-dessus du contenu */
-    font-size: 1.5em; /* Taille de police pour le contenu */
-    font-weight: bold; /* Texte en gras */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .page-title {
-    font-size: 2em; /* Taille de police pour les titres de page */
-    font-weight: bold; /* Texte en gras */
+    font-size: 2em;
+    font-weight: bold;
 }
 
 .gallery {
-    display: none; /* Cacher la galerie par défaut */
+    display: none;
     text-align: center;
 }
 
@@ -91,6 +91,13 @@ nav ul li a.disabled {
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 15px; /* Bords arrondis */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide */
+}
+
+.image-item:hover img {
+    transform: scale(1.05); /* Zoom léger */
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3); /* Ombre légère */
 }
 
 .image-item .image-text {
@@ -102,17 +109,26 @@ nav ul li a.disabled {
     font-size: 1.2em;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
+    border-radius: 10px;
 }
 
-/* Style pour les miniatures et la modale */
+/* Miniatures (catégories d'images) */
 .thumbnail {
     width: 150px;
     height: 100px;
     object-fit: cover;
     margin: 10px;
     cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.thumbnail:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Modale */
 .modal {
     display: flex;
     align-items: center;
@@ -130,6 +146,7 @@ nav ul li a.disabled {
 .modal-content {
     max-width: 90%;
     max-height: 90%;
+    border-radius: 15px; /* Bords arrondis pour l'image agrandie */
 }
 
 .close {
@@ -142,11 +159,11 @@ nav ul li a.disabled {
     cursor: pointer;
 }
 
-/* Style pour les informations de contact supplémentaires */
+/* Contact */
 .contact-info {
     margin-top: 20px;
     font-size: 1em;
-    text-align: center; /* Centré */
+    text-align: center;
 }
 
 .contact-info p {
@@ -154,98 +171,19 @@ nav ul li a.disabled {
 }
 
 .contact-info a {
-    color: white; /* Lien normal en blanc */
+    color: white;
     text-decoration: underline;
     font-size: 1em;
 }
 
 .contact-info a.insta-link {
-    color: rgb(138, 58, 185); /* Couleur spécifique pour le lien Instagram */
-}
-
-.contact-info a.faq-link {
-    color: whitesmoke; /* Couleur spécifique pour le lien FAQ */
+    color: rgb(138, 58, 185);
 }
 
 .contact-info a:hover {
     text-decoration: underline;
 }
 
-/* Style pour la FAQ */
-.faq-item {
-    background-color: #333;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-}
-
-.faq-item h3 {
-    font-size: 1.5em; /* Taille de police pour les titres des questions fréquentes */
-    margin-bottom: 5px;
-    font-weight: bold; /* Texte en gras */
-}
-
-.faq-item p {
-    font-size: 1em; /* Taille de police pour le texte des questions fréquentes */
-    margin: 5px 0;
-    font-weight: normal; /* Texte sans gras */
-}
-
-#question-form {
-    margin-top: 20px;
-}
-
-#question-form label {
-    font-size: 1.5em; /* Taille de police pour les labels du formulaire de question */
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold; /* Texte en gras */
-}
-
-#question-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.5em; /* Taille de police pour les champs du formulaire */
-    background-color: #c0c0c0;
-    color: black;
-    font-weight: bold; /* Texte en gras */
-}
-
-#question-form button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1em; /* Taille de police pour les boutons */
-    color: white;
-    background-color: #444;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif; /* Police Times New Roman */
-    font-weight: normal; /* Texte sans gras */
-}
-
-#question-form button:hover {
-    background-color: #666;
-}
-
-.button-common {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em; /* Taille de police pour les boutons */
-    color: white;
-    background-color: #444;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'Times New Roman', Times, serif; /* Police Times New Roman */
-    font-weight: normal; /* Texte sans gras */
-}
-
-.button-common:hover {
-    background-color: #666;
-}
 .contact-image {
     display: flex;
     justify-content: center;
@@ -255,8 +193,9 @@ nav ul li a.disabled {
 .contact-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 15px;
 }
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -268,7 +207,7 @@ nav ul li a.disabled {
 }
 
 .site-logo {
-    max-width: 100px; /* Ajustez la taille selon vos besoins */
+    max-width: 100px;
     height: auto;
     margin-left: 10px;
 }

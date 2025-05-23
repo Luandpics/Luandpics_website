@@ -1,217 +1,164 @@
-body {
-    background-color: black; /* Fond noir */
-    color: white; /* Texte blanc */
-    margin: 25px;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
+document.addEventListener('DOMContentLoaded', function() {
+    showPage('gallery'); // Afficher la galerie par défaut
+});
+
+function showPage(page) {
+    const contentDiv = document.getElementById('content');
+    const navLinks = document.querySelectorAll('.main-nav a');
+
+    // Désactive tous les liens
+    navLinks.forEach(link => {
+        link.classList.remove('disabled');
+    });
+
+    // Affiche le contenu correspondant
+    if (page === 'gallery') {
+        contentDiv.innerHTML = '<p class="page-title">Mais alors... que voit mon objectif?</p>';
+        document.getElementById('nav-gallery').classList.add('disabled');
+        document.querySelector('.gallery').style.display = 'block';
+        loadImages();
+    } else if (page === 'contact') {
+        contentDiv.innerHTML = `
+            <p class="page-title">N'hésitez plus... contactez moi!</p>
+            <div class="contact-image">
+                <img src="Logo/white_logo.png" alt="Contact Image">
+            </div>
+            <div class="contact-info">
+                <p>Mon numéro de téléphone : +33648137680</p>
+                <p>Mon adresse email : Luka.pics9@gmail.com</p>
+                <p>Suivez-moi sur les réseaux sociaux : <a href="https://www.instagram.com/luka_.pics/" target="_blank" class="insta-link">Instagram</a></p>
+            </div>
+        `;
+        document.getElementById('nav-contact').classList.add('disabled');
+        document.querySelector('.gallery').style.display = 'none';
+    }  else if (page.startsWith('image')) {
+        const imageIndex = page.split('-')[1];
+        const image = images[imageIndex];
+        contentDiv.innerHTML = `
+            <h2>${image.text}</h2>
+            <div id="category-gallery"></div>
+        `;
+        document.querySelector('.gallery').style.display = 'none';
+        showImageGallery(image.text);
+    }
 }
 
-header {
-    padding: 30px;
+const images = [
+    { src: 'Sport/perche.JPG', text: 'Sports' },
+    { src: 'Paysages/paysage.JPG', text: 'Paysages' },
+    { src: 'Animaux/animaux.JPG', text: 'Animaux' },
+    { src: 'Portraits/portrait.JPG', text: 'Portraits' },
+    { src: 'Shooting/shooting.JPG', text: 'Shooting' },
+    //{ src: 'Events/events.JPG', text: 'Événements' },
+];
+
+function loadImages() {
+    const imageGrid = document.querySelector('.image-grid');
+    imageGrid.innerHTML = ''; // Clear existing images
+
+    images.forEach((image, index) => {
+        const img = document.createElement('img');
+        img.src = image.src;
+        img.alt = image.text;
+        img.style.cursor = 'pointer';
+        img.onclick = () => {
+            showPage(`image-${index}`);
+        };
+
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('image-item');
+        imgContainer.appendChild(img);
+
+        const imgText = document.createElement('div');
+        imgText.classList.add('image-text');
+        imgText.textContent = image.text;
+        imgContainer.appendChild(imgText);
+
+        imageGrid.appendChild(imgContainer);
+    });
 }
 
-header h1.logo {
-    font-size: 4em; /* Taille du titre plus grande */
-    margin: 0; /* Enlève la marge par défaut */
+function showImageGallery(category) {
+    const categoryGallery = document.getElementById('category-gallery');
+    const categoryImages = getCategoryImages(category);
+
+    categoryImages.forEach(src => {
+        const thumb = document.createElement('img');
+        thumb.src = src;
+        thumb.classList.add('thumbnail');
+        thumb.onclick = () => openModal(src);
+        categoryGallery.appendChild(thumb);
+    });
 }
 
-header h2.subtitle {
-    font-size: 1em;
-    margin: 0;
+function getCategoryImages(category) {
+    // Remplacez les chemins d'accès par ceux de vos images réelles
+    if (category === 'Sports') {
+        return [
+            'Sport/course1.JPG',
+            'Sport/course2.JPG',
+            'Sport/course3.JPG',
+            'Sport/perche.JPG',
+            'Sport/perche1.JPG',
+            'Sport/perche2.JPG',
+            'Sport/perche3.JPG',
+            'Sport/perche4.JPG'
+        ];
+    }
+    if (category === 'Paysages') {
+        return [
+            'Paysages/paysage.JPG',
+            'Paysages/paysage1.JPG',
+            'Paysages/paysage2.JPG',
+            'Paysages/paysage3.JPG',
+            'Paysages/paysage4.JPG',
+            'Paysages/paysage5.JPG',
+            'Paysages/paysage6.JPG',
+            'Paysages/paysage7.JPG'
+        ];
+    }
+    if (category === 'Animaux') {
+        return [
+            'Animaux/animaux.JPG',
+            'Animaux/animaux1.JPG',
+            'Animaux/animaux2.JPG',
+            'Animaux/animaux3.JPG',
+            'Animaux/animaux4.JPG',
+            'Animaux/animaux5.JPG',
+            'Animaux/animaux6.JPG',
+            'Animaux/animaux7.JPG'
+        ];
+    }
+    if (category === 'Portraits') {
+        return [
+            'Portraits/portrait.JPG',
+            'Portraits/portrait1.JPG',
+            'Portraits/portrait2.JPG',
+            'Portraits/portrait3.JPG',
+            'Portraits/portrait4.JPG'
+        ];
+    }
+    if (category === 'Shooting') {
+        return [
+            'Shooting/shooting.JPG',
+            'Shooting/shooting1.JPG',
+            'Shooting/shooting2.JPG'
+        ];
+    }
+    return [];
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-}
+function openModal(src) {
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+        <span class="close">&times;</span>
+        <img class="modal-content" src="${src}">
+    `;
+    document.body.appendChild(modal);
 
-nav ul.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-nav ul li a:hover:not(.disabled) {
-    text-decoration: underline;
-}
-
-nav ul li a.disabled {
-    pointer-events: none;
-    color: gray;
-    text-decoration: none;
-    cursor: default;
-}
-
-#content {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.page-title {
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.gallery {
-    display: none;
-    text-align: center;
-}
-
-.image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-items: center;
-    padding: 20px;
-}
-
-.image-item {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-}
-
-.image-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 15px; /* Bords arrondis */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation fluide */
-}
-
-.image-item:hover img {
-    transform: scale(1.05); /* Zoom léger */
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3); /* Ombre légère */
-}
-
-.image-item .image-text {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 1.2em;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 10px;
-}
-
-/* Miniatures (catégories d'images) */
-.thumbnail {
-    width: 150px;
-    height: 100px;
-    object-fit: cover;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.thumbnail:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
-}
-
-/* Modale */
-.modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-.modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 15px; /* Bords arrondis pour l'image agrandie */
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    color: #fff;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Contact */
-.contact-info {
-    margin-top: 20px;
-    font-size: 1em;
-    text-align: center;
-}
-
-.contact-info p {
-    margin: 5px 0;
-}
-
-.contact-info a {
-    color: white;
-    text-decoration: underline;
-    font-size: 1em;
-}
-
-.contact-info a.insta-link {
-    color: rgb(138, 58, 185);
-}
-
-.contact-info a:hover {
-    text-decoration: underline;
-}
-
-.contact-image {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.contact-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    margin-right: 10px;
-}
-
-.site-logo {
-    max-width: 100px;
-    height: auto;
-    margin-left: 10px;
-}
-
-.subtitle {
-    margin: 0;
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.onclick = () => {
+        modal.remove();
+    };
 }
