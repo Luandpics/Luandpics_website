@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     showPage('gallery');
 });
 
@@ -7,13 +7,13 @@ function showPage(page) {
     const navLinks = document.querySelectorAll('.main-nav a');
 
     // Désactive tous les liens
-    navLinks.forEach(link => {
-        link.classList.remove('disabled');
-    });
+    navLinks.forEach(link => link.classList.remove('disabled'));
 
-    // Affiche le contenu correspondant
     if (page === 'gallery') {
-        contentDiv.innerHTML = '<p class="page-title">Mais alors... que voit mon objectif?</p>';
+        contentDiv.innerHTML = `
+            <p class="page-title">Mais alors... que voit mon objectif?</p>
+            <button onclick="showPage('contact')" class="bottom-button">Me contacter</button>
+        `;
         document.getElementById('nav-gallery').classList.add('disabled');
         document.querySelector('.gallery').style.display = 'block';
         loadImages();
@@ -26,12 +26,15 @@ function showPage(page) {
             <div class="contact-info">
                 <p>Mon numéro de téléphone : +33648137680</p>
                 <p>Mon adresse email : Luka.pics9@gmail.com</p>
-                <p>Suivez-moi sur les réseaux sociaux : <a href="https://www.instagram.com/luka_.pics/" target="_blank" class="insta-link">Instagram</a></p>
+                <p>Suivez-moi sur les réseaux sociaux :
+                    <a href="https://www.instagram.com/luka_.pics/" target="_blank" class="insta-link">Instagram</a>
+                </p>
             </div>
+            <button onclick="showPage('gallery')" class="bottom-button">Retour à l'accueil</button>
         `;
         document.getElementById('nav-contact').classList.add('disabled');
         document.querySelector('.gallery').style.display = 'none';
-    }  else if (page.startsWith('image')) {
+    } else if (page.startsWith('image')) {
         const imageIndex = page.split('-')[1];
         const image = images[imageIndex];
         contentDiv.innerHTML = `
@@ -49,12 +52,11 @@ const images = [
     { src: 'Animaux/animaux.JPG', text: 'Animaux' },
     { src: 'Portraits/portrait.JPG', text: 'Portraits' },
     { src: 'Shooting/shooting.JPG', text: 'Shooting' },
-    //{ src: 'Events/events.JPG', text: 'Événements' },
 ];
 
 function loadImages() {
     const imageGrid = document.querySelector('.image-grid');
-    imageGrid.innerHTML = ''; // Clear existing images
+    imageGrid.innerHTML = '';
 
     images.forEach((image, index) => {
         const img = document.createElement('img');
@@ -80,13 +82,14 @@ function loadImages() {
 
 function showImageGallery(category) {
     const categoryGallery = document.getElementById('category-gallery');
+    categoryGallery.innerHTML = ''; // Clear before displaying new thumbnails
     const categoryImages = getCategoryImages(category);
 
-    categoryImages.forEach(src => {
+    categoryImages.forEach((src, index) => {
         const thumb = document.createElement('img');
         thumb.src = src;
         thumb.classList.add('thumbnail');
-        thumb.onclick = () => openModal(src);
+        thumb.onclick = () => openModal(categoryImages, index);
         categoryGallery.appendChild(thumb);
     });
 }
@@ -145,17 +148,34 @@ function getCategoryImages(category) {
     return [];
 }
 
-function openModal(src) {
+function openModal(images, index) {
     const modal = document.createElement('div');
     modal.classList.add('modal');
+
     modal.innerHTML = `
         <span class="close">&times;</span>
-        <img class="modal-content" src="${src}">
+        <span class="nav-arrow left">&#10094;</span>
+        <img class="modal-content" src="${images[index]}" data-index="${index}">
+        <span class="nav-arrow right">&#10095;</span>
     `;
     document.body.appendChild(modal);
 
-    const closeBtn = modal.querySelector('.close');
-    closeBtn.onclick = () => {
+    const img = modal.querySelector('.modal-content');
+
+    // Fermer la modale
+    modal.querySelector('.close').onclick = () => modal.remove();
+
+    // Navigation gauche
+    modal.querySelector('.nav-arrow.left').onclick = () => {
+        const newIndex = (index - 1 + images.length) % images.length;
         modal.remove();
+        openModal(images, newIndex);
+    };
+
+    // Navigation droite
+    modal.querySelector('.nav-arrow.right').onclick = () => {
+        const newIndex = (index + 1) % images.length;
+        modal.remove();
+        openModal(images, newIndex);
     };
 }

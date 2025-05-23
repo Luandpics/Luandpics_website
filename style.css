@@ -215,3 +215,40 @@ nav ul li a.disabled {
 .subtitle {
     margin: 0;
 }
+
+.bottom-button {
+    margin: 30px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background-color: #444;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bottom-button:hover {
+    background-color: #888;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 3em;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.nav-arrow.left {
+    left: 10px;
+}
+
+.nav-arrow.right {
+    right: 10px;
+}
