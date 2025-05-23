@@ -8,6 +8,9 @@ function showPage(page) {
 
     navLinks.forEach(link => link.classList.remove('disabled'));
 
+    // Supprime les boutons modaux persistants s'ils existent
+    document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
+
     if (page === 'gallery') {
         contentDiv.innerHTML = `
             <p class="page-title">Intemporel. Inoubliable. Vous.</p>
@@ -38,13 +41,18 @@ function showPage(page) {
         contentDiv.innerHTML = `
             <h2>${image.text}</h2>
             <div id="category-gallery"></div>
-            <div class="modal-buttons">
-                <button class="modal-btn" onclick="showPage('gallery')">Accueil</button>
-                <button class="modal-btn" onclick="showPage('contact')">Me contacter</button>
-            </div>
         `;
         document.querySelector('.gallery').style.display = 'none';
         showImageGallery(image.text);
+
+        const buttons = document.createElement('div');
+        buttons.classList.add('modal-buttons');
+        buttons.classList.add('modal-only-buttons');
+        buttons.innerHTML = `
+            <button class="modal-btn" onclick="showPage('gallery')">Accueil</button>
+            <button class="modal-btn" onclick="showPage('contact')">Me contacter</button>
+        `;
+        document.body.appendChild(buttons);
     }
 }
 
@@ -151,6 +159,9 @@ function getCategoryImages(category) {
 }
 
 function openModal(images, index) {
+    // Supprime uniquement les boutons modaux, pas ceux de la page
+    document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
+
     const modal = document.createElement('div');
     modal.classList.add('modal');
 
@@ -159,11 +170,19 @@ function openModal(images, index) {
         <span class="nav-arrow left">&#10094;</span>
         <img class="modal-content" src="${images[index]}" data-index="${index}">
         <span class="nav-arrow right">&#10095;</span>
+
+        <div class="modal-buttons modal-only-buttons">
+            <button class="modal-btn" onclick="closeModalAndGo('gallery')">Accueil</button>
+            <button class="modal-btn" onclick="closeModalAndGo('contact')">Me contacter</button>
+        </div>
     `;
 
     document.body.appendChild(modal);
 
-    modal.querySelector('.close').onclick = () => modal.remove();
+    modal.querySelector('.close').onclick = () => {
+        modal.remove();
+        document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
+    };
 
     modal.querySelector('.nav-arrow.left').onclick = () => {
         const newIndex = (index - 1 + images.length) % images.length;
@@ -180,5 +199,6 @@ function openModal(images, index) {
 
 function closeModalAndGo(target) {
     document.querySelector('.modal')?.remove();
+    document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
     showPage(target);
 }
