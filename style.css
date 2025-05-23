@@ -217,21 +217,25 @@ nav ul li a.disabled {
 }
 
 .bottom-button {
-    margin: 30px auto;
-    padding: 10px 20px;
-    font-size: 1em;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 14px;
+    font-size: 0.9em;
     font-weight: bold;
     color: white;
     background-color: #444;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
+    z-index: 1000;
     transition: background-color 0.3s;
 }
 
 .bottom-button:hover {
     background-color: #888;
 }
+
 
 .nav-arrow {
     position: absolute;
