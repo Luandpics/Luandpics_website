@@ -151,6 +151,7 @@ function getCategoryImages(category) {
 }
 
 function openModal(images, index) {
+    document.querySelectorAll('.modal-buttons').forEach(el => el.remove());
     const modal = document.createElement('div');
     modal.classList.add('modal');
 
