@@ -98,8 +98,6 @@ function getCategoryImages(category) {
             'Sport/course1.JPG',
             'Sport/course2.JPG',
             'Sport/course3.JPG',
-            'Sport/perche.JPG',
-            'Sport/perche1.JPG',
             'Sport/perche2.JPG',
             'Sport/perche3.JPG',
             'Sport/perche4.JPG'
