@@ -6,7 +6,6 @@ function showPage(page) {
     const contentDiv = document.getElementById('content');
     const navLinks = document.querySelectorAll('.main-nav a');
 
-    // Désactive tous les liens
     navLinks.forEach(link => link.classList.remove('disabled'));
 
     if (page === 'gallery') {
