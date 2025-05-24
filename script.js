@@ -57,7 +57,7 @@ function showPage(page) {
 }
 
 const images = [
-    { src: 'Sport/perche2.JPG', text: 'Sports' },
+    { src:  'Sport/Elise_PV.JPG', text: 'Sports' },
     { src: 'Paysages/paysage.JPG', text: 'Paysages' },
     { src: 'Animaux/animaux.JPG', text: 'Animaux' },
     { src: 'Portraits/portrait.JPG', text: 'Portraits' },
