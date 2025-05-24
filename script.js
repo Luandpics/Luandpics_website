@@ -8,7 +8,6 @@ function showPage(page) {
 
     navLinks.forEach(link => link.classList.remove('disabled'));
 
-    // Supprime les boutons modaux persistants s'ils existent
     document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
 
     if (page === 'gallery') {
@@ -57,11 +56,11 @@ function showPage(page) {
 }
 
 const images = [
-    { src:  'Sport/Elise_PV.JPG', text: 'Sports' },
-    { src: 'Paysages/paysage.JPG', text: 'Paysages' },
-    { src: 'Animaux/animaux.JPG', text: 'Animaux' },
-    { src: 'Portraits/portrait.JPG', text: 'Portraits' },
+    { src: 'Sport/Elise_PV.JPG', text: 'Sports' },
     { src: 'Shooting/shooting.JPG', text: 'Shooting' },
+    { src: 'Portraits/portrait.JPG', text: 'Portraits' },
+    { src: 'Animaux/animaux.JPG', text: 'Animaux' },
+    { src: 'Paysages/paysage.JPG', text: 'Paysages' }
 ];
 
 function loadImages() {
@@ -72,7 +71,10 @@ function loadImages() {
         const img = document.createElement('img');
         img.src = image.src;
         img.alt = image.text;
+        img.loading = "lazy";
+        img.classList.add('fade-in');
         img.style.cursor = 'pointer';
+        img.onload = () => img.classList.add('loaded');
         img.onclick = () => {
             showPage(`image-${index}`);
         };
@@ -98,7 +100,9 @@ function showImageGallery(category) {
     categoryImages.forEach((src, index) => {
         const thumb = document.createElement('img');
         thumb.src = src;
-        thumb.classList.add('thumbnail');
+        thumb.loading = "lazy";
+        thumb.classList.add('thumbnail', 'fade-in');
+        thumb.onload = () => thumb.classList.add('loaded');
         thumb.onclick = () => openModal(categoryImages, index);
         categoryGallery.appendChild(thumb);
     });
