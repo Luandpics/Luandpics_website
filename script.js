@@ -7,7 +7,6 @@ function showPage(page) {
     const navLinks = document.querySelectorAll('.main-nav a');
 
     navLinks.forEach(link => link.classList.remove('disabled'));
-
     document.querySelectorAll('.modal-only-buttons').forEach(el => el.remove());
 
     if (page === 'gallery') {
@@ -24,11 +23,18 @@ function showPage(page) {
                 <img src="Logo/white_logo.png" alt="Contact Image">
             </div>
             <div class="contact-info">
-                <p>Mon numéro de téléphone : +33648137680</p>
-                <p>Mon adresse email : Luka.pics9@gmail.com</p>
-                <p>Suivez-moi sur les réseaux sociaux :
-                    <a href="https://www.instagram.com/luka_.pics/" target="_blank" class="insta-link">Instagram</a>
-                </p>
+                <div class="contact-info-block">
+                    <h3><i class="fas fa-phone-alt"></i> Téléphone</h3>
+                    <p>+33 6 48 13 76 80</p>
+                </div>
+                <div class="contact-info-block">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p><a href="mailto:Luka.pics9@gmail.com">Luka.pics9@gmail.com</a></p>
+                </div>
+                <div class="contact-info-block">
+                    <h3><i class="fab fa-instagram"></i> Instagram</h3>
+                    <p><a href="https://www.instagram.com/luka_.pics/" target="_blank">@luka_.pics</a></p>
+                </div>
             </div>
             <button onclick="showPage('gallery')" class="bottom-button">Retour à l'accueil</button>
         `;
@@ -45,8 +51,7 @@ function showPage(page) {
         showImageGallery(image.text);
 
         const buttons = document.createElement('div');
-        buttons.classList.add('modal-buttons');
-        buttons.classList.add('modal-only-buttons');
+        buttons.classList.add('modal-buttons', 'modal-only-buttons');
         buttons.innerHTML = `
             <button class="modal-btn" onclick="showPage('gallery')">Accueil</button>
             <button class="modal-btn" onclick="showPage('contact')">Me contacter</button>
