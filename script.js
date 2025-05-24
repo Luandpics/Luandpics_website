@@ -113,7 +113,7 @@ function getCategoryImages(category) {
             'Sport/perche2.JPG',
             'Sport/perche3.JPG',
             'Sport/perche4.JPG',
-            'Sport/Djiby_HG.JPG',
+            'Sport/Djiby_HJ.JPG',
             'Sport/Cassandre_LJ.JPG',
             'Sport/Cassandre.JPG',
             'Sport/Shams_Marche.JPG',
@@ -132,16 +132,16 @@ function getCategoryImages(category) {
             'Sport/Naomily_start.JPG',
             'Sport/Naomily_run.JPG',
             'Sport/Maelle_start.JPG',
-            'Sport/Fred_smile',
+            'Sport/Fred_smile.JPG',
             'Sport/Bert_Ami_smile.JPG',
             'Sport/Tarek_start.JPG',
             'Sport/Tarek_run.JPG',
-            'Sport/Bertille_marques',
+            'Sport/Bertille_marques.JPG',
             'Sport/Medhi_PV.JPG',
             'Sport/Emeline_smile.JPG',
             'Sport/Support.JPG',
             'Sport/Randy_Madi.JPG',
-            'Sport/Ami_HJ'
+            'Sport/Ami_HJ.JPG'
         ];
     }
     if (category === 'Paysages') {
